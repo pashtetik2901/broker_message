@@ -1,0 +1,7 @@
+fastapi
+pydantic
+uvicorn
+pydantic_settings
+aio_pika
+python-multipart
+aiologger
