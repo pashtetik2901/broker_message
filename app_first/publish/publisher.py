@@ -19,7 +19,7 @@ async def _publish_event(data: RequestModel, message_id=None):
     connection = await connect_robust(setting.URL_BROKER)
     async with connection:
         channel = await connection.channel(publisher_confirms=True)
-        exchange = await channel.declare_exchange("my_exchange", durable=False)
+        exchange = await channel.declare_exchange("my_exchange_first", durable=False)
         message = _create_message(data.model_dump_json().encode(), message_id)
         routing_key = setting.QUEUE_NAME
         queue = await channel.declare_queue(setting.QUEUE_NAME, durable=True)
