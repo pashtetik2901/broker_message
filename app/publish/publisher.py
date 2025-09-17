@@ -2,8 +2,8 @@ from typing import Optional
 from aio_pika import Message, connect_robust
 from aio_pika.abc import DeliveryMode, AbstractChannel
 from uuid import uuid4
-from config import setting, logger
-from model import RequestModel
+from publish.config import setting, logger
+from publish.model import RequestModel
 
 def _create_message(data: bytes, message_id: Optional[str] = None):
     return Message(
@@ -28,5 +28,3 @@ async def _publish_event(data: RequestModel, message_id=None):
         await logger.info("Start publishing message")
         await exchange.publish(message, routing_key=routing_key)
         await logger.info("Publish completed")
-
-        

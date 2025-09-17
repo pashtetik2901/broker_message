@@ -16,6 +16,7 @@ async def consumer(queue):
             data = json.loads(message.body.decode())
             
             print(data)
+            print(context)
             
             await logger.info("Message was processed")
             
